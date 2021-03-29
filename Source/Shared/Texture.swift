@@ -16,9 +16,9 @@ final class Texture {
 		let data = try Data(contentsOf: url)
 		
 		name = url.lastPathComponent.components(separatedBy: ".tex").first!
-		width = Int(data.read(UInt32.self, at: 4))
-		height = Int(data.read(UInt32.self, at: 8))
-		state = .decoding(LZ4Decoder(for: data[60...]))
+		width = Int(data.read(UInt32.self, at: 8))
+		height = Int(data.read(UInt32.self, at: 12))
+		state = .decoding(LZ4Decoder(for: data[68...]))
 	}
 	
 	func decode() -> CGImage {
